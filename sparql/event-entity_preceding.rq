@@ -1,0 +1,26 @@
+prefix ptp: <http://example.org/def/production-trace-patterns/>
+
+construct {
+  ?Event ptp:entity ?EntityLatest .
+}
+where {
+  {
+    select ?Event ( iri(strafter(max(?time_entity), "||")) AS ?EntityLatest )
+    where {
+      ?Event a $EventType ;
+        ptp:entity ?Resource ;
+        ptp:atTime ?eventTime .
+
+      ?PrecedingEvent a $PrecedingEventType ;
+        ptp:entity ?Resource ;
+        ptp:entity ?Entity ;
+        ptp:atTime ?precedingEventTime .
+
+      filter ( ?precedingEventTime < ?eventTime )
+      filter ( ?Entity != ?Resource )
+
+      bind( concat(str(?eventTime), "||", str(?Entity)) AS ?time_entity )
+    }
+    group by ?Event
+  }
+}

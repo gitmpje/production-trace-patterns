@@ -1,0 +1,15 @@
+prefix ptp: <http://example.org/def/production-trace-patterns/>
+
+construct {
+  ?Event ptp:entity ?PartEntity , ?ProductionEntity .
+}
+where {
+  ?PartEntity ptp:isPartOf ?ProductionEntity .
+  {
+    ?Event a ptp:Event ;
+      ptp:entity ?ProductionEntity .
+  } union {
+    ?Event a ptp:Event ;
+      ptp:entity ?PartEntity .
+  }
+}

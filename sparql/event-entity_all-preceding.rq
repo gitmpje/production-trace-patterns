@@ -1,0 +1,19 @@
+prefix ptp: <http://example.org/def/production-trace-patterns/>
+
+construct {
+  ?PrecedingEvent ptp:entity ?RelatedProductionEntity .
+}
+where {
+  ?Event a $EventType ;
+    ptp:entity ?ProductionEntity ;
+    ptp:entity ?RelatedProductionEntity ;
+    ptp:atTime ?eventTime .
+
+  ?RelatedProductionEntity a $RelatedEntityType .
+
+  ?PrecedingEvent ptp:entity ?ProductionEntity ;
+    ptp:atTime ?precedingEventTime .
+
+  filter ( ?precedingEventTime < ?eventTime )
+  filter ( ?ProductionEntity != ?RelatedProductionEntity )
+}

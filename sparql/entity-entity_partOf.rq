@@ -1,0 +1,29 @@
+prefix ptp: <http://example.org/def/production-trace-patterns/>
+
+construct {
+  ?PartEntity ptp:isPartOf ?ProductionEntity .
+}
+where {
+  ?ProductionEntity a ptp:ProductionEntity .
+
+  [] a $IntervalStartType ;
+    ptp:entity ?Resource ;
+    ptp:entity ?ProductionEntity ;
+    ptp:atTime ?intervalStartTime .
+
+  [] a $IntervalEndType ;
+    ptp:entity ?Resource ;
+    ptp:entity ?ProductionEntity ;
+    ptp:atTime ?intervalEndTime .
+
+  ?Resource a ptp:Resource .
+
+  ?Event ptp:entity ?Resource ;
+    ptp:entity ?PartEntity ;
+    ptp:atTime ?eventTime .
+
+  ?PartEntity a $PartEntityType .
+
+  filter ( ?eventTime > ?intervalStartTime )
+  filter ( ?eventTime < ?intervalEndTime )
+}

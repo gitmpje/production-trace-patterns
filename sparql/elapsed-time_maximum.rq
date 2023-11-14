@@ -1,0 +1,17 @@
+prefix ptp: <http://example.org/def/production-trace-patterns/>
+
+select distinct
+  ?Entity
+  (max(?intervalEndTime - ?intervalStartTime) as ?elapsedTime)
+where {
+  [] a $IntervalStartType ;
+    ptp:entity ?Entity ;
+    ptp:atTime ?intervalStartTime .
+
+  [] a $IntervalEndType ;
+    ptp:entity ?Entity ;
+    ptp:atTime ?intervalEndTime .
+
+  filter ( ?intervalStartTime < ?intervalEndTime )
+}
+group by ?Entity

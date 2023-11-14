@@ -1,0 +1,31 @@
+prefix ptp: <http://example.org/def/production-trace-patterns/>
+
+select distinct
+  ?Resource
+  ?ProductionEntity
+  ?intervalStartTime
+  ?intervalEndTime
+  (count(distinct ?Event) as ?eventCount)
+where {
+  ?ProductionEntity a ptp:ProductionEntity .
+
+  [] a $IntervalStartType ;
+    ptp:entity ?Resource ;
+    ptp:entity ?ProductionEntity ;
+    ptp:atTime ?intervalStartTime .
+
+  [] a $IntervalEndType ;
+    ptp:entity ?Resource ;
+    ptp:entity ?ProductionEntity ;
+    ptp:atTime ?intervalEndTime .
+
+  ?Resource a ptp:Resource .
+
+  ?Event a $EventType ;
+    ptp:entity ?Resource ;
+    ptp:atTime ?eventTime .
+
+  filter ( ?eventTime > ?intervalStartTime )
+  filter ( ?eventTime < ?intervalEndTime )
+}
+group by ?Resource ?ProductionEntity ?intervalStartTime ?intervalEndTime

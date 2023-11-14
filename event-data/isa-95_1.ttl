@@ -1,0 +1,38 @@
+@base <http://example.org/id/production-trace-patterns/> .
+@prefix ptp: <http://example.org/def/production-trace-patterns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<Product2> a ptp:Entity , ptp:ProductionEntity , ptp:Product .
+<Product3> a ptp:Entity , ptp:ProductionEntity , ptp:Product .
+<Sensor1> a ptp:Entity , ptp:Sensor ;
+    ptp:isPartOf <Machine1> .
+
+<3f48bd5221df13e1ca4fe92a52a4d6ad> a ptp:Event , ptp:Observation ;
+	ptp:atTime "2023-11-04T12:27:28.000Z"^^xsd:dateTime ;
+	ptp:entity <Product2> , <Machine5> .
+
+<aa5319ed6f7266e980aef0a85c6bcf1f> a ptp:Event , ptp:Observation ;
+	ptp:atTime "2023-11-04T12:38:51.000Z"^^xsd:dateTime ;
+	ptp:entity <Product3> , <Machine5> .
+
+<d306bc198f1e208212ed28b973f2f000> a ptp:Event , ptp:Observation ;
+	ptp:atTime "2023-11-11T15:43:10.000Z"^^xsd:dateTime ;
+    ptp:rejectedQuantity 5 ;
+	ptp:entity <Machine11> .
+
+<c00721e33ccbf98e10ae53a08a38915c> a ptp:Event , ptp:Observation ;
+	ptp:atTime "2023-11-11T16:41:11.000Z"^^xsd:dateTime ;
+    ptp:rejectedQuantity 2 ;
+	ptp:entity <Machine11> .
+
+<6eb0b7d19fa4f4ef153841151b25627f> a ptp:Event , ptp:Observation ;
+	ptp:atTime "2023-11-03T17:42:37.000Z"^^xsd:dateTime ;
+    ptp:measuredValue 10.5 ;
+	ptp:entity <Sensor1> .
+
+<8d2009a64c61b58a4255ac8eba22a27d> a ptp:Event , ptp:Observation ;
+	ptp:atTime "2023-11-03T18:39:07.000Z"^^xsd:dateTime ;
+    ptp:measuredValue 10.1 ;
+	ptp:entity <Sensor1> .

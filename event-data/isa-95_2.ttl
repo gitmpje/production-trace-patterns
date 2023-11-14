@@ -1,0 +1,62 @@
+@base <http://example.org/id/production-trace-patterns/> .
+@prefix ptp: <http://example.org/def/production-trace-patterns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<Product3> a ptp:Entity , ptp:ProductionEntity , ptp:Product .
+
+<Tool1> a ptp:Entity , ptp:Resource , ptp:Tool .
+<Tool2> a ptp:Entity , ptp:Resource , ptp:Tool .
+
+<d754beb59d85cbbfb68a4de2ea10f280> a ptp:Event , ptp:SwitchTool ;
+	ptp:atTime "2023-11-05T01:08:49.000Z"^^xsd:dateTime ;
+	ptp:entity <Tool1> , <Machine9> .
+
+<6b8b7c59293f7613d92d1b3fa0e02562> a ptp:Event , ptp:SwitchTool ;
+	ptp:atTime "2023-11-05T03:44:05.000Z"^^xsd:dateTime ;
+	ptp:entity <Tool2> , <Machine9> .
+
+<fa35922bacb622ddf2a1276f07514e82> a ptp:Event , ptp:Alarm ;
+	ptp:atTime "2023-11-06T21:28:23.000Z"^^xsd:dateTime ;
+	ptp:entity <Machine8> .
+
+<4043f483c5759b72d0a261ad77318d9e> a ptp:Event , ptp:Alarm ;
+	ptp:atTime "2023-11-06T21:29:01.000Z"^^xsd:dateTime ;
+	ptp:entity <Machine8> .
+
+<c37bfb557a578a1432fc43ee652d2639> a ptp:Event , ptp:Alarm ;
+	ptp:atTime "2023-11-06T22:39:15.000Z"^^xsd:dateTime ;
+	ptp:entity <Machine8> .
+
+<67c0e659db811af07c7956a7ac40a243> a ptp:Event , ptp:Alarm ;
+	ptp:atTime "2023-11-07T14:10:15.000Z"^^xsd:dateTime ;
+	ptp:entity <Machine2> .
+
+<99fed17c17885ee3435e3fc8911038f1> a ptp:Event , ptp:Repair ;
+	ptp:atTime "2023-11-04T07:53:04.000Z"^^xsd:dateTime ;
+	ptp:entity <Machine2> .
+
+<4e9698f6757f619eb4c56bce03b9d414> a ptp:Event , ptp:Repair ;
+	ptp:atTime "2023-11-07T14:05:07.000Z"^^xsd:dateTime ;
+	ptp:entity <Machine2> .
+
+<7de5315d1df61e0f522eeb88403ab498> a ptp:Event , ptp:SwitchState ;
+	ptp:atTime "2023-11-11T06:31:28.000Z"^^xsd:dateTime ;
+	ptp:state ptp:Failed ;
+	ptp:entity <Machine14> .
+
+<6c5bf773f09a594816a7a427edaca979> a ptp:Event , ptp:SwitchState ;
+	ptp:atTime "2023-11-11T07:04:41.000Z"^^xsd:dateTime ;
+	ptp:state ptp:Idle ;
+	ptp:entity <Machine14> .
+
+<bc28d83435922de94bc3d7680479ba6d> a ptp:Event , ptp:SwitchState ;
+	ptp:atTime "2023-11-11T08:14:25.000Z"^^xsd:dateTime ;
+	ptp:state ptp:Failed ;
+	ptp:entity <Machine14> .
+
+<9c21d950d79d64a270d1f5c226de95e4> a ptp:Event , ptp:SwitchState ;
+	ptp:atTime "2023-11-11T09:02:10.000Z"^^xsd:dateTime ;
+	ptp:state ptp:Idle ;
+	ptp:entity <Machine14> .

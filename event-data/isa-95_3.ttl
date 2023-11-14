@@ -1,0 +1,287 @@
+@base <http://example.org/id/production-trace-patterns/> .
+@prefix ptp: <http://example.org/def/production-trace-patterns/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<ProductionLot1> a ptp:Entity , ptp:ProductionEntity , ptp:ProductionLot .
+<ProductionLot2> a ptp:Entity , ptp:ProductionEntity , ptp:ProductionLot .
+<ProductionLot3> a ptp:Entity , ptp:ProductionEntity , ptp:ProductionLot .
+<ProductionLot4> a ptp:Entity , ptp:ProductionEntity , ptp:ProductionLot .
+
+<MaterialLot1> a ptp:Entity , ptp:ProductionEntity , ptp:MaterialLot .
+<MaterialLot2> a ptp:Entity , ptp:ProductionEntity , ptp:MaterialLot .
+
+<Product1> a ptp:Entity , ptp:ProductionEntity , ptp:Product ;
+	ptp:isPartOf <ProductionLot2> .
+
+<Machine1> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine2> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine3> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine4> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine5> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine6> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine7> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine8> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine9> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine10> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine11> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine12> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine13> a ptp:Entity , ptp:Resource , ptp:Machine .
+<Machine14> a ptp:Entity , ptp:Resource , ptp:Machine .
+
+<85d986c7b2d2e1533c67e7841a8300e5> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-03T14:52:21.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine5> .
+
+<98676a4e566d7f9ee69328e331101cde> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-03T15:34:39.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine5> .
+
+<6e6e9fe0be5fdc79c7a19aa8e7713acf> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-03T16:51:51.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine1> .
+
+<7dc3c89ffdf74b0d917f728ef5f0a6db> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-03T19:26:30.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine1> .
+
+<1d84c6f29883de71dcdd4e54f7b321c0> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-04T03:35:06.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine6> .
+
+<68746cd9c2b59c3817cb2fc13ad79bc0> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-04T06:17:18.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine6> .
+
+<58737189a87dcfbb0ff5a07ca0a63c96> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-04T12:19:44.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine5> .
+
+<87dd083096be22de0c337be396f274d2> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-04T12:50:16.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine5> .
+
+<f2e353378c12bea51667dd14b58a01fb> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-04T14:03:11.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine6> .
+
+<39a857f687366ea891d056d38f2eea9e> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-04T16:31:00.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine6> .
+
+<aaa5e8be5d4fc1eb4d050a5f4bc678c8> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-05T02:19:29.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine9> .
+
+<620c35445b8238b93aea25c33a6a8aae> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-05T03:02:00.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine9> .
+
+<09dce23b06a174e018616fd810a1f589> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-05T04:04:10.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine9> .
+
+<ab3c48a20f673ec7de82e4b40f63ed43> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-05T04:28:36.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine9> .
+
+<9a0e0124013311367894380a56516e0f> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-05T05:02:45.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine9> .
+
+<ae3f865bf70f664e41e561bdfec6e4b2> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-05T05:36:22.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine9> .
+
+<83900a89f2dd9ddeec4518114ccc7bc3> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-06T00:40:46.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine3> .
+
+<3a754e3952f7eeca3ff674181fb2fe9c> a ptp:Event , ptp:Consume ;
+	ptp:atTime "2023-11-06T02:30:47.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <MaterialLot2> , <Machine3> .
+
+<83900a89f2dd9ddeec4518114ccc7bc4> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-06T04:14:21.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine3> .
+
+<1c0930fb6b5650b4a147311e7234ba76> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-06T12:23:57.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine12> .
+
+<ec0b62db7d46232cac300acbe39d3d3a> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-06T12:36:30.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine12> .
+
+<b682aa51f4334655c1e9093ef997f65e> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-06T15:08:30.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine12> .
+
+<8aacbb8e362ffada7216081845771e2e> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-06T15:22:07.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine12> .
+
+<20674c13e6f3f8b39abfc3e411c0c5b1> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-06T16:58:19.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine12> .
+
+<55ce6aff5c1d3b46b139ae9d6e63c358> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-06T17:08:25.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine12> .
+
+<0b0ccf8ef8065f7c56bc1ea2e98397a8> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-06T21:27:26.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine8> .
+
+<0b059c850904be37316a9fb2fc241aee> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-06T22:06:35.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine8> .
+
+<307943693144386681fcbec6c803f80e> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-06T22:27:15.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine8> .
+
+<376c03d7dee79e57bfd9df0f95e0ba2f> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-06T23:10:41.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine8> .
+
+<21e23b5eb6246f91b04595c12a4b2520> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T00:45:06.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine10> .
+
+<bddcedf2310275a80a78e043ea67a53c> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T00:45:11.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine10> .
+
+<40c8ec71825426a5adda7fedd565ecc1> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T04:14:21.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine8> .
+
+<d83529c115a00a1e87854a72efab840a> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T06:02:36.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine8> .
+
+<2f9acc6ff7b153785bd55f8446b7495d> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T07:29:13.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine10> .
+
+<5b9b1f970d7f7205f11503685d2d6382> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T07:29:23.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine10> .
+
+<3663d2d9011af6cdfafca3eba7effa08> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T07:35:20.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine10> .
+
+<16aa9a9d7fd65cb47c611619cf0a486b> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T12:56:59.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine10> .
+
+<1c70199bb26318014862a41ca5f4fc50> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T14:07:00.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine2> .
+
+<2b8cc7f21cd28629b84c05bef49a867d> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T14:25:09.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine2> .
+
+<f6b4f623213aa3fb0fb5237185c0bb6f> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T16:51:21.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine2> .
+
+<8b02beb4a1e22eb9d08dc1397a299597> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T16:51:35.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine2> .
+
+<45deccbf164f36cbc94f2b7310a3f108> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T17:05:34.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine2> .
+
+<6a165ed80f209bd2eee26dfc3d65a8c8> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T17:05:34.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine2> .
+
+<d2aac7aec98eb1fbf2ffec9b171582c2> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T18:26:17.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine7> .
+
+<6c2cf5c6b851eff9b40c33d009c52df6> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T18:26:21.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine7> .
+
+<e2f7ac7e38e33fb3e7167c14d97a8ef9> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-07T18:26:31.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine7> .
+
+<4a88139cb733cf472d67fbcb2669a28c> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T19:57:33.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine7> .
+
+<8edbc75e93b43ac11df293bca0f9f459> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T19:57:41.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine7> .
+
+<d75116dd0fca59951935932485273f74> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-07T19:58:03.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine7> .
+
+<de8bb499881e74d115ea7b319b41a092> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-08T02:53:59.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine4> .
+
+<10ccdf6f55202fabc8d2376582e08922> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-08T03:39:57.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine4> .
+
+<c06bcde4ab3692b237ed2db881c9d16f> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-08T05:01:06.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot3> , <Machine4> .
+
+<1cd0d76de2f804dd520e16cc8a222573> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-08T05:25:34.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine4> .
+
+<7471e0d3bfa929cc8b9b2e202b6baed8> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-08T05:26:21.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine4> .
+
+<2a7e7750f85a88d9aaae6328de25f987> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-08T05:54:08.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <Machine4> .
+
+<4e5f402a41c17c450923332faa0680b3> a ptp:Event , ptp:Combine ;
+	ptp:atTime "2023-11-08T08:14:11.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot1> , <ProductionLot2> , <ProductionLot3> .
+
+<34126a7ea39b8b8395d6dbdd925455d1> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-11T10:18:19.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine11> .
+
+<954a0fdbeaf553659ef7cb1ad11cae82> a ptp:Event , ptp:Consume ;
+	ptp:atTime "2023-11-11T15:02:03.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <MaterialLot1> , <Machine11> .
+
+<34126a7ea39b8b8395d6dbdd925455d2> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-11T17:01:10.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <Machine11> .
+
+<2d26f5e7cbd8261e63fec39993967d1b> a ptp:Event , ptp:Split ;
+	ptp:atTime "2023-11-11T18:03:37.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot2> , <ProductionLot4> .
+
+<db9c01455bc2e8920eadd9b19da4d089> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-11T21:46:30.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot4> , <Machine13> .
+
+<5ec8787671066214a1462e06bea5ecfa> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-11T22:32:44.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot4> , <Machine13> .
+
+<2c7ebd980300ab951e61f427cb7d7f5e> a ptp:Event , ptp:TrackIn ;
+	ptp:atTime "2023-11-11T22:57:47.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot4> , <Machine14> .
+
+<e1d3da92de5fc82dca20b31200c8c533> a ptp:Event , ptp:TrackOut ;
+	ptp:atTime "2023-11-11T23:06:41.000Z"^^xsd:dateTime ;
+	ptp:entity <ProductionLot4> , <Machine14> .
