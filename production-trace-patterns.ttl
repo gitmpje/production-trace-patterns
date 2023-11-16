@@ -1,0 +1,290 @@
+@prefix : <http://example.org/def/production-trace-patterns/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/def/production-trace-patterns/> .
+
+<http://example.org/def/production-trace-patterns/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/def/production-trace-patterns/entity
+:entity rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdfs:domain :Event ;
+        rdfs:range :Event .
+
+
+###  http://example.org/def/production-trace-patterns/isPartOf
+:isPartOf rdf:type owl:ObjectProperty ;
+          rdfs:domain :Entity ;
+          rdfs:range :Entity .
+
+
+###  http://example.org/def/production-trace-patterns/state
+:state rdf:type owl:ObjectProperty ;
+       rdfs:domain :SwitchState ;
+       rdfs:range :State .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/def/production-trace-patterns/atTime
+:atTime rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Event ;
+        rdfs:range xsd:dateTime .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/def/production-trace-patterns/AGV
+:AGV rdf:type owl:Class ;
+     rdfs:subClassOf :Resource ;
+     rdfs:comment "Automated Guided Vehicle that can be used to transport objects (e.g. products and materials) between locations in a manufacturing environment."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Alarm
+:Alarm rdf:type owl:Class ;
+       rdfs:subClassOf :Event ;
+       rdfs:comment "Describes the occasion when a Resource has some issue and raises a warning."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Buffer
+:Buffer rdf:type owl:Class ;
+        rdfs:subClassOf :Resource ;
+        rdfs:comment "Resource where objects are temporarily stored, for example a product can be stored in a buffer in front of a machine while the machine is processing another product."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Component
+:Component rdf:type owl:Class ;
+           rdfs:subClassOf :Product ;
+           rdfs:comment "A part of the Product, for example a sub-assembly."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Consume
+:Consume rdf:type owl:Class ;
+         rdfs:subClassOf :Event ;
+         rdfs:comment "Describes the occasion when objects are used to produce something else, for example during the assembly of a Component to a Product."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Entity
+:Entity rdf:type owl:Class ;
+        rdfs:comment "Thing or object, not necessary physical."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Event
+:Event rdf:type owl:Class ;
+       rdfs:comment "Occasion or something that happens, which is the effect of a process that is executed."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Failed
+:Failed rdf:type owl:Class ;
+        rdfs:subClassOf :State .
+
+
+###  http://example.org/def/production-trace-patterns/Idle
+:Idle rdf:type owl:Class ;
+      rdfs:subClassOf :State .
+
+
+###  http://example.org/def/production-trace-patterns/Job
+:Job rdf:type owl:Class ;
+     rdfs:subClassOf :ProductionEntity ;
+     rdfs:comment "Instruction to execute a specific operation on an object."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Machine
+:Machine rdf:type owl:Class ;
+         rdfs:subClassOf :Resource ;
+         rdfs:comment "Resource that executes certain manufacturing operations."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Maintenance
+:Maintenance rdf:type owl:Class ;
+             rdfs:subClassOf :Event ;
+             rdfs:comment "Describes the occasion when a Resource, in contrast to Repair this is often done before a Resource breaks."@en .
+
+
+###  http://example.org/def/production-trace-patterns/MaterialLot
+:MaterialLot rdf:type owl:Class ;
+             rdfs:subClassOf :ProductionEntity ;
+             rdfs:comment "Set of materials that are used in a process."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Merge
+:Merge rdf:type owl:Class ;
+       rdfs:subClassOf :Event ;
+       rdfs:comment "Describes the occasion when the objects in one ProductionLot are transferred to another existing ProductionLot."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Observation
+:Observation rdf:type owl:Class ;
+             rdfs:subClassOf :Event ;
+             rdfs:comment "Describes the occasion when for example a measurement is made by a Sensor."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Order
+:Order rdf:type owl:Class ;
+       rdfs:subClassOf :ProductionEntity ;
+       rdfs:comment "Instruction to execute certain operations on certain objects."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Product
+:Product rdf:type owl:Class ;
+         rdfs:subClassOf :ProductionEntity ;
+         rdfs:comment "Object that is a main result of a manufacturing process."@en .
+
+
+###  http://example.org/def/production-trace-patterns/ProductionEntity
+:ProductionEntity rdf:type owl:Class ;
+                  rdfs:subClassOf :Entity ;
+                  rdfs:comment "Entity that can be used to execute (parts of) a production process, for example a machine."@en .
+
+
+###  http://example.org/def/production-trace-patterns/ProductionLot
+:ProductionLot rdf:type owl:Class ;
+               rdfs:subClassOf :ProductionEntity ;
+               rdfs:comment "Set of objects that are handled together in a process."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Repair
+:Repair rdf:type owl:Class ;
+        rdfs:subClassOf :Event ;
+        rdfs:comment "Describes the occasion that an Entity is repaired, for example the replacement of certain broken parts of a machine."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Resource
+:Resource rdf:type owl:Class ;
+          rdfs:subClassOf :Entity ;
+          rdfs:comment "Entity that is the subject of a production process, for example a product."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Sensor
+:Sensor rdf:type owl:Class ;
+        rdfs:subClassOf :Entity ;
+        rdfs:comment "Device that can be used to make observations."@en .
+
+
+###  http://example.org/def/production-trace-patterns/SettingUp
+:SettingUp rdf:type owl:Class ;
+           rdfs:subClassOf :State .
+
+
+###  http://example.org/def/production-trace-patterns/Split
+:Split rdf:type owl:Class ;
+       rdfs:subClassOf :Event ;
+       rdfs:comment "Describes the occasion when a subset of the objects in one ProductionLot are transferred to another ProductionLot."@en .
+
+
+###  http://example.org/def/production-trace-patterns/State
+:State rdf:type owl:Class ;
+       rdfs:comment "State in which a resource can be."@en .
+
+
+###  http://example.org/def/production-trace-patterns/SwitchState
+:SwitchState rdf:type owl:Class ;
+             rdfs:subClassOf :Event ;
+             rdfs:comment "Describes the occasion when a Resource changes to another state, for clarification also a set of typical machine states are included."@en .
+
+
+###  http://example.org/def/production-trace-patterns/SwitchTool
+:SwitchTool rdf:type owl:Class ;
+            rdfs:subClassOf :Event ;
+            rdfs:comment "Describes the occasion when a Resource changes to another Tool."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Tool
+:Tool rdf:type owl:Class ;
+      rdfs:subClassOf :Resource ;
+      rdfs:comment "Resource that is used to execute specific manufacturing operations, for example a tool for grinding."@en .
+
+
+###  http://example.org/def/production-trace-patterns/TrackIn
+:TrackIn rdf:type owl:Class ;
+         rdfs:subClassOf :Event ;
+         rdfs:comment """Describes the occasion when a ProductionEntity is checked in at a Resource. For example, for a Machine we define this as the moment it starts processing the
+ProductionEntity, and for a Buffer the arrival of a ProductionEntity."""@en .
+
+
+###  http://example.org/def/production-trace-patterns/TrackOut
+:TrackOut rdf:type owl:Class ;
+          rdfs:subClassOf :Event ;
+          rdfs:comment "Describes the occasion when a ProductionEntity is checked out at a Resource. For example, for a Machine we define this as the moment it finishes processing the ProductionEntity, and for a Buffer the departure of a ProductionEntity."@en .
+
+
+###  http://example.org/def/production-trace-patterns/Working
+:Working rdf:type owl:Class ;
+         rdfs:subClassOf :State .
+
+
+###  http://example.org/def/production-trace-patterns/Workstation
+:Workstation rdf:type owl:Class ;
+             rdfs:subClassOf :Resource ;
+             rdfs:comment "Location at a shop floor where operations are executed, this can be done by different machines that are located in that workstation or by human workers."@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AGV
+                :Buffer
+                :Machine
+                :Tool
+                :Workstation
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Consume
+                :Maintenance
+                :Merge
+                :Observation
+                :Repair
+                :Split
+                :SwitchState
+                :SwitchTool
+                :TrackIn
+                :TrackOut
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Failed
+                :Idle
+                :SettingUp
+                :Working
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Job
+                :MaterialLot
+                :Order
+                :Product
+                :ProductionLot
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ProductionEntity
+                :Resource
+                :Sensor
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
