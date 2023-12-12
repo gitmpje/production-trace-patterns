@@ -29,6 +29,6 @@ The list below gives an overview of the query templates and applicable parameter
 5. *elapsed-time_maximum*: `$IntervalStartType`, `$IntervalEndType`
 6. *event-entity_preceding*: `$EventType`, `$PrecedingEventType`
 7. *entity-entity_partOf*
-8. *event-entity_all-preceding*: `$EventType`, `$RelatedEntityType`
-9. *event-entity_all-succeeding*: `$EventType`, `$RelatedEntityType`
+8. *event-entity_all-preceding*: `$RelatedEntityType`
+9. *event-entity_all-succeeding*: `$RelatedEntityType`
 10. *event-entity_partOf*: `$IntervalStartType`, `$IntervalEndType`, `$PartEntityType`

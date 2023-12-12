@@ -4,7 +4,7 @@ construct {
   ?PrecedingEvent ptp:entity ?RelatedProductionEntity .
 }
 where {
-  ?Event a $EventType ;
+  ?Event a ptp:Aggregate ;
     ptp:entity ?ProductionEntity ;
     ptp:entity ?RelatedProductionEntity ;
     ptp:atTime ?eventTime .
