@@ -1,0 +1,18 @@
+[project]
+name = "production-trace-patterns"
+version = "0.0.1"
+authors = [
+  {name = "Mark", email = "m.c.a.v.d.pas@tue.nl"},
+]
+description = "Data and code accompanying the paper about Production Trace Patterns."
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+readme = "README.md"
+requires-python = ">=3.11,<4"
+
+dependencies = [
+  "rdflib ==7.1.*",
+]
