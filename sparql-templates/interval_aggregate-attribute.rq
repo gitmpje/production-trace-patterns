@@ -6,6 +6,7 @@ select distinct
   ?Resource
   ?ProductionEntity
   $attribute
+  (group_concat(str(?value); separator=", ") as ?groupConcat)
   (sum(?value) as ?sum)
   (avg(?value) as ?avg)
   (max(?value) as ?max)
