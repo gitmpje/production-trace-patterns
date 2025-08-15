@@ -4,7 +4,7 @@ Data and code accompanying the paper about Production Trace Patterns.
 ## Content
 
 * `use_cases` contains data and scripts for the use cases.
-* `sparql/` contains the SPARQL query templates that implement the patterns and can be used to derive the 'hidden' information.
+* `sparql-templates/` contains the SPARQL query templates that implement the patterns and can be used to derive the 'hidden' information.
 * `production-trace-patterns.ttl` contains the (lightweight) ontology.
 
 ## Dependencies
@@ -31,3 +31,9 @@ The list below gives an overview of the query templates and applicable parameter
 8. *event-entity_all-preceding*: `$RelatedEntityType`
 9. *event-entity_all-succeeding*: `$RelatedEntityType`
 10. *event-entity_partOf*: `$IntervalStartType`, `$IntervalEndType`, `$PartEntityType`
+
+## Notes
+The SPARQL templates use filters to derive the chronological relation between events.
+For better performance it can be benificial to materialize the chronological relations between events.
+Work on Event Knowledge Graphs can be used as a reference for this.
+Alternatively, a database with indexing of timestamps will also help to improve performance.
