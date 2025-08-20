@@ -11,26 +11,34 @@ select distinct
   (max(?value) as ?max)
   (min(?value) as ?min)
 where {
-  ?ProductionEntity a ptp:ProductionEntity .
+  {
+    select ?intervalStartTime ?Resource ?ProductionEntity (min(?intervalEndTime_) as ?intervalEndTime)
+    where {
+      ?ProductionEntity a ptp:ProductionEntity .
 
-  [] a $IntervalStartType ;
-    ptp:entity ?Resource ;
-    ptp:entity ?ProductionEntity ;
-    ptp:atTime ?intervalStartTime .
+      [] a $IntervalStartType ;
+        ptp:entity ?Resource ;
+        ptp:entity ?ProductionEntity ;
+        ptp:atTime ?intervalStartTime .
 
-  [] a $IntervalEndType ;
-    ptp:entity ?Resource ;
-    ptp:entity ?ProductionEntity ;
-    ptp:atTime ?intervalEndTime .
+      [] a $IntervalEndType ;
+        ptp:entity ?Resource ;
+        ptp:entity ?ProductionEntity ;
+        ptp:atTime ?intervalEndTime_ .
 
-  ?Resource a ptp:Resource .
+      ?Resource a ptp:Resource .
+
+      filter ( ?intervalStartTime <= ?intervalEndTime_ )
+    }
+    group by ?intervalStartTime ?Resource ?ProductionEntity
+  }
 
   ?Event a $EventType ;
     ptp:entity ?Resource ;
     ptp:atTime ?eventTime ;
     $attribute ?value .
 
-  filter ( ?eventTime > ?intervalStartTime )
-  filter ( ?eventTime < ?intervalEndTime )
+  filter ( ?eventTime >= ?intervalStartTime )
+  filter ( ?eventTime <= ?intervalEndTime )
 }
 group by ?Resource ?ProductionEntity ?intervalStartTime ?intervalEndTime $attribute

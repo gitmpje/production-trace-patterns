@@ -1,24 +1,23 @@
 prefix ptp: <http://example.org/def/production-trace-patterns/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 select distinct
   ?Resource
   ?Event
-  ?attribute
   ?value
   (min(?succeedingEventTime - ?eventTime) as ?elapsedTime)
 where {
   ?Event a $EventType ;
     ptp:entity ?Resource ;
     ptp:atTime ?eventTime ;
-    ?attribute ?value .
+    $attribute ?value .
 
   ?SucceedingEvent a $EventType ;
     ptp:entity ?Resource ;
     ptp:atTime ?succeedingEventTime .
 
-  ?Resource a ptp:Resource .
+  ?Resource a ptp:Resource , $ResourceType .
 
   filter ( ?eventTime < ?succeedingEventTime )
-  filter ( ?attribute not in (rdf:type, ptp:entity, ptp:atTime) )
 }
-group by ?Resource ?Event
+group by ?Resource ?Event ?value

@@ -12,6 +12,8 @@ where {
     ptp:entity ?Entity ;
     ptp:atTime ?intervalEndTime .
 
+  ?Entity a $EntityType .
+
   filter ( ?intervalStartTime < ?intervalEndTime )
 }
 group by ?Entity

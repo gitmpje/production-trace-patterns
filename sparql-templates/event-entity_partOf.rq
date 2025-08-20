@@ -1,15 +1,17 @@
 prefix ptp: <http://example.org/def/production-trace-patterns/>
 
 construct {
-  ?Event ptp:entity ?PartEntity , ?ProductionEntity .
+  ?Event ptp:entity ?PartEntity .
 }
 where {
-  ?PartEntity ptp:isPartOf ?ProductionEntity .
+  ?Entity a $EntityType .
+  ?PartEntity ptp:isPartOf ?Entity .
   {
     ?Event a ptp:Event ;
-      ptp:entity ?ProductionEntity .
+      ptp:entity ?Entity .
   } union {
     ?Event a ptp:Event ;
       ptp:entity ?PartEntity .
   }
+  ?Event a $EventType .
 }

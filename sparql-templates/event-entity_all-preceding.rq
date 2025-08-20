@@ -4,14 +4,16 @@ construct {
   ?PrecedingEvent ptp:entity ?RelatedProductionEntity .
 }
 where {
-  ?Event a ptp:Aggregate ;
+  ?ProductionEntity a ptp:ProductionEntity .
+
+  ?Event a $EventType ;
     ptp:entity ?ProductionEntity ;
     ptp:entity ?RelatedProductionEntity ;
     ptp:atTime ?eventTime .
 
   ?RelatedProductionEntity a $RelatedEntityType .
 
-  ?PrecedingEvent ptp:entity ?ProductionEntity ;
+  ?PrecedingEvent ptp:entity ?RelatedProductionEntity ;
     ptp:atTime ?precedingEventTime .
 
   filter ( ?precedingEventTime < ?eventTime )
