@@ -20,7 +20,7 @@
       "@type": "@id"
     },
     "id": {
-      "@id": "ptp:entity",
+      "@id": "mainEntity",
       "@type": "@id"
     },
     "lastUpdated": "ptp:atTime",

@@ -1,16 +1,17 @@
-BASE <http://example.org/id/automotive/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX ptp: <http://example.org/def/production-trace-patterns/>
+base <http://example.org/id/automotive/>
+prefix ex: <http://example.org/def/automotive/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix ptp: <http://example.org/def/production-trace-patterns/>
 
 # Derive type based on graphs the entity occurs in
-INSERT {
-  GRAPH ?g { ?entity a ?type , ptp:Entity }
+insert {
+  graph ?g { ?entity a ?type , ptp:Entity }
 }
-WHERE {
-  { SELECT DISTINCT ?g ?entity ?type {
-    GRAPH ?g { [] ptp:entity ?entity }
+where {
+  { select distinct ?g ?entity ?type {
+    graph ?g { [] ex:mainEntity ?entity }
 
-    VALUES (?g ?type) {
+    values (?g ?type) {
       (<http://example.org/graph/automotive/events/stations> ptp:WorkStation)
       (<http://example.org/graph/automotive/events/products> ptp:Product)
       (<http://example.org/graph/automotive/events/modules> ptp:Component)
@@ -22,13 +23,13 @@ WHERE {
 };
 
 # Derive abstract type
-INSERT {
-  GRAPH ?g { ?entity a ?abstractType }
+insert {
+  graph ?g { ?entity a ?abstractType }
 }
-WHERE {
-  GRAPH ?g { ?entity a ?type }
+where {
+  graph ?g { ?entity a ?type }
 
-  VALUES (?type ?abstractType) {
+  values (?type ?abstractType) {
     (ptp:Machine ptp:Resource)
     (ptp:AGV ptp:Resource)
     (ptp:WorkStation ptp:Resource)
@@ -36,4 +37,4 @@ WHERE {
     (ptp:Component ptp:ProductionEntity)
     (ptp:Order ptp:ProductionEntity)
   }
-}
+};

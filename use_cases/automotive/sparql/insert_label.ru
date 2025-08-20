@@ -1,24 +1,24 @@
-BASE <http://example.org/id/automotive/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX ptp: <http://example.org/def/production-trace-patterns/>
+base <http://example.org/id/automotive/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix ptp: <http://example.org/def/production-trace-patterns/>
 
 # Use the id (last part of URI) as the label
-INSERT {
-  GRAPH ?g {
+insert {
+  graph ?g {
     ?object rdfs:label ?label .
   }
 }
-WHERE {
-  { SELECT DISTINCT ?g ?object {
-    GRAPH ?g {
+where {
+  { select distinct ?g ?object {
+    graph ?g {
       {
         [] ?p ?object
-      } UNION {
+      } union {
         ?object ?p []
       }
     }
   }}
 
-  FILTER isIRI(?object)
-  BIND(strafter(str(?object), str(<>)) AS ?label)
-}
+  filter isIRI(?object)
+  bind(strafter(str(?object), str(<>)) as ?label)
+};

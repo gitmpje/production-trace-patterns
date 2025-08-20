@@ -12,7 +12,7 @@ Automotive data set for demonstrating the patterns and their implementation in S
 ## Dependencies
 * RDF Store, in this example [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki) is used.
 
-## Application of the patterns
+## Use cases for the patterns
 1. Number of times a machine state switches during processing of an order.
     * `$IntervalStartType=ptp:TrackIn`
     * `$IntervalEndType=ptp:TrackOut`
@@ -25,15 +25,32 @@ Automotive data set for demonstrating the patterns and their implementation in S
 3. Time between processing orders on a machine.
     * `$EventType=ptp:TrackIn`
     * `$PrecedingEventType=ptp:TrackOut`
-4. Time a machine is in a state.
-    * `$EventType=ptp:SwitchState`
+4. 
+    1. Time a machine is in a state.
+        * `$EventType=ptp:SwitchState`
+        * `$attribute=ex:state`
+        * `$ResourceType=ptp:Machine`
+    2. Time between observing products at a Work Station.
+        * `$EventType=ptp:Observation`
+        * `$attribute=ex:mainEntity`
+        * `$ResourceType=ptp:WorkStation`
 5. Throughput time per product.
     * `$IntervalStartType=ptp:TrackIn`
     * `$IntervalEndType=ptp:TrackOut`
-6. Relate event start processing on a machine to the AGV that delivered the product to that machine.
+    * `$EntityType=ptp:Product`
+6. Relate AGV track out event to the product that the AGV was transporting.
+    * `$EventType=ptp:TrackOut`
+    * `$PrecedingEventType=ptp:TrackIn`
+    * `$ResourceType=ptp:AGV`
+    * `$EntityType=ptp:ProductionEntity`
+7. Relate machine level track in events to the work station.
     * `$EventType=ptp:TrackIn`
-    * `$PrecedingEventType=ptp:TrackOut` # TODO: derive AGV TrackIn/TrackOut events
-7. Relate machine level events to the station.
-8. 
-9. 
-10. 
+    * `$EntityType=ptp:WorkStation`
+8. Relate events related to the modules (components) to the product that is composed of those modules.
+    * `$EventType=ptp:Aggregate`
+    * `$RelatedEntityType=ptp:Product`
+9. -
+10. Relate orders to the product they are part of.
+    * `$IntervalStartType=ptp:TrackIn`
+    * `$IntervalEndType=ptp:TrackOut`
+    * `$PartEntityType=ptp:Order`

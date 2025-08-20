@@ -11,6 +11,7 @@ HOST = "localhost:8080"
 REPO = "automotive"
 
 PTP = Namespace("http://example.org/def/production-trace-patterns/")
+PTP = Namespace("http://example.org/def/automotive/")
 
 headers = {"Content-Type": "application/sparql-update"}
 
@@ -22,55 +23,88 @@ store.http_auth = AUTH
 
 
 if __name__ == "__main__":
-
     dataset = Dataset(default_union=True)
 
     # Define the use cases by refering to the pattern query and defining parameters
     pattern_use_cases = [
-        (
-            "elapsed-time_maximum.rq",
-            {"IntervalStartType": PTP.TrackIn, "IntervalEndType": PTP.TrackOut},
-        ),
-        (
-            "elapsed-time_preceding.rq",
-            {"EventType": PTP.TrackIn, "PrecedingEventType": PTP.Repair},
-        ),
-        ("elapsed-time_succeeding-same.rq", {"EventType": PTP.SwitchState}),
-        (
-            "entity-entity_partOf.rq",
-            {
-                "IntervalStartType": PTP.TrackIn,
-                "IntervalEndType": PTP.TrackOut,
-                "PartEntityType": PTP.Product,
-            },
-        ),
-        (
-            "event-entity_all-preceding.rq",
-            {"EventType": PTP.Split, "RelatedEntityType": PTP.ProductionLot},
-        ),
-        (
-            "event-entity_all-succeeding.rq",
-            {"EventType": PTP.Combine, "RelatedEntityType": PTP.ProductionLot},
-        ),
-        ("event-entity_partOf.rq", {}),
-        (
-            "event-entity_preceding.rq",
-            {"EventType": PTP.TrackIn, "PrecedingEventType": PTP.SwitchTool},
-        ),
-        (
-            "interval_aggregate-attribute.rq",
-            {
-                "IntervalStartType": PTP.TrackIn,
-                "IntervalEndType": PTP.TrackOut,
-                "attribute": PTP.rejectedQuantity,
-            },
-        ),
+        # 1) Number of times a machine state switches during processing of an order.
         (
             "interval_count-event.rq",
             {
                 "IntervalStartType": PTP.TrackIn,
                 "IntervalEndType": PTP.TrackOut,
-                "EventType": PTP.Alarm,
+                "EventType": PTP.SwitchState,
+            },
+        ),
+        # 2) List all states of a machine during processing of an order.
+        (
+            "interval_aggregate-attribute.rq",
+            {
+                "IntervalStartType": PTP.TrackIn,
+                "IntervalEndType": PTP.TrackOut,
+                "EventType": PTP.SwitchState,
+                "attribute": EX.state,
+            },
+        ),
+        # 3) Time between processing orders on a machine.
+        (
+            "elapsed-time_preceding.rq",
+            {
+                "EventType": PTP.TrackIn,
+                "PrecedingEventType": PTP.TrackOut,
+            },
+        ),
+        # 4.1) Time a machine is in a state.
+        (
+            "elapsed-time_succeeding-same.rq",
+            {
+                "EventType": PTP.SwitchState,
+                "attribute": EX.state,
+                "ResourceType": PTP.Machine,
+            },
+        ),
+        # 4.2) Time between observing products at a Work Station.
+        (
+            "elapsed-time_succeeding-same.rq",
+            {
+                "EventType": PTP.Observation,
+                "attribute": EX.mainEntity,
+                "ResourceType": PTP.WorkStation,
+            },
+        ),
+        # 5) Throughput time per product.
+        (
+            "elapsed-time_maximum.rq",
+            {
+                "IntervalStartType": PTP.TrackIn,
+                "IntervalEndType": PTP.TrackOut,
+                "EntityType": PTP.Product,
+            },
+        ),
+        # 6) Relate AGV TrackIn event to the product that the AGV was transporting.
+        (
+            "event-entity_preceding.rq",
+            {
+                "EventType": PTP.TrackIn,
+                "PrecedingEventType": PTP.TrackOut,
+                "ResourceType": PTP.AGV,
+                "EntityType": PTP.ProductionEntity,
+            },
+        ),
+        # 7) Relate machine level track in events to the work station.
+        (
+            "event-entity_partOf.rq",
+            {
+                "EventType": PTP.TrackIn,
+                "EntityType": PTP.WorkStation,
+            },
+        ),
+        # 8) Relate events related to the modules (components) to the product that is composed of those modules.
+        (
+            "event-entity_all-preceding.rq",
+            {
+                "EventType": PTP.Aggregate,
+                "RelatedEntityType": PTP.Product,
             },
         ),
     ]
