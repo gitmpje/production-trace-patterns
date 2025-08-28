@@ -4,7 +4,7 @@ Data and code accompanying the paper about Production Trace Patterns.
 ## Content
 
 * `use_cases` contains data and scripts for the use cases.
-* `sparql/` contains the SPARQL query templates that implement the patterns and can be used to derive the 'hidden' information.
+* `sparql-templates/` contains the SPARQL query templates that implement the patterns and can be used to derive the 'hidden' information.
 * `production-trace-patterns.ttl` contains the (lightweight) ontology.
 
 ## Dependencies

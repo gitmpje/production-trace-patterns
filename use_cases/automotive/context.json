@@ -1,0 +1,50 @@
+{
+  "@context": {
+    "@base": "http://example.org/id/automotive/",
+    "@vocab": "http://example.org/def/automotive/",
+    "ptp": "http://example.org/def/production-trace-patterns/",
+    "agvIds": {
+      "@id": "hasAGV",
+      "@type": "@id"
+    },
+    "allocatedId": {
+      "@id": "allocatedToEntity",
+      "@type": "@id"
+    },
+    "contentIds": {
+      "@id": "contentEntity",
+      "@type": "@id"
+    },
+    "from": {
+      "@id": "fromEntity",
+      "@type": "@id"
+    },
+    "id": {
+      "@id": "mainEntity",
+      "@type": "@id"
+    },
+    "lastUpdated": "ptp:atTime",
+    "locationEntityId": {
+      "@id": "locatedAtEntity",
+      "@type": "@id"
+    },
+    "parentId": {
+      "@id": "ptp:isPartOf",
+      "@type": "@id"
+    },
+    "productId": {
+      "@id": "productEntity",
+      "@type": "@id"
+    },
+    "setupMatrix": {
+      "@container": "@index"
+    },
+    "skills": {
+      "@container": "@id"
+    },
+    "to": {
+      "@id": "toEntity",
+      "@type": "@id"
+    }
+  }
+}

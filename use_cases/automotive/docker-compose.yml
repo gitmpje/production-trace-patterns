@@ -1,0 +1,10 @@
+services:
+  event-data-base:
+    image: stain/jena-fuseki
+    container_name: event-data-base
+    ports:
+      - 3030:3030
+    environment:
+      - ADMIN_PASSWORD=admin
+    volumes:
+      - ./fuseki-config.ttl:/fuseki/config.ttl

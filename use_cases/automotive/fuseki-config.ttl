@@ -1,0 +1,42 @@
+PREFIX : <http://example.org/fuseki>
+PREFIX fuseki: <http://jena.apache.org/fuseki#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX tdb2: <http://jena.apache.org/2016/tdb#>
+PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
+
+[] rdf:type fuseki:Server ;
+  fuseki:services ( <service/automotive> ) .
+
+<service/automotive> rdf:type fuseki:Service ;
+  fuseki:name "automotive" ;
+    fuseki:endpoint [ 
+         # SPARQL query service
+        fuseki:operation fuseki:query ; 
+        fuseki:name "sparql"
+    ] , [ 
+         # SPARQL update service
+        fuseki:operation fuseki:update ; 
+        fuseki:name "update" 
+    ] , [ 
+         # HTML file upload service
+        fuseki:operation fuseki:upload ; 
+        fuseki:name "upload" 
+    ] , [ 
+         # SPARQL Graph Store Protocol (read)
+        fuseki:operation fuseki:gsp_r ; 
+        fuseki:name "get" 
+    ] , [ 
+        # SPARQL Graph Store Protcol (read and write)
+        fuseki:operation fuseki:gsp_rw ; 
+        fuseki:name "data" 
+    ] ;
+  ja:context [
+    ja:cxtName "arq:queryTimeout" ;
+    ja:cxtValue "120000" ;
+  ] ;
+  fuseki:dataset <dataset/automotive> .
+
+<dataset/automotive> rdf:type tdb2:DatasetTDB2 ;
+  tdb2:location "/fuseki/databases/automotive" ;
+  tdb2:unionDefaultGraph true .

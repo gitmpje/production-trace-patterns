@@ -17,8 +17,6 @@ where {
     ptp:entity ?Resource ;
     ptp:atTime ?precedingEventTime .
 
-  ?Resource a ptp:Resource .
-
   filter ( ?eventTime > ?precedingEventTime )
 }
 group by ?Resource ?Event

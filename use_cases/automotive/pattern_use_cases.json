@@ -1,0 +1,141 @@
+{
+    "1": {
+        "pattern": "1",
+        "description": "Number of times a machine state switches during processing of an order.",
+        "sparql-template": "interval_count-event.rq",
+        "sparql-binding": {
+            "IntervalStartType": "http://example.org/def/production-trace-patterns/TrackIn",
+            "IntervalEndType": "http://example.org/def/production-trace-patterns/TrackOut",
+            "EventType": "http://example.org/def/production-trace-patterns/SwitchState"
+        },
+        "entity" : {
+            "variable": "ProductionEntity",
+            "identifier": "650bf57c0335464a8cb06a15"
+        }
+    },
+    "2": {
+        "pattern": "2",
+        "description": "List all states of a machine during processing of an order.",
+        "sparql-template": "interval_aggregate-attribute.rq",
+        "sparql-binding": {
+            "IntervalStartType": "http://example.org/def/production-trace-patterns/TrackIn",
+            "IntervalEndType": "http://example.org/def/production-trace-patterns/TrackOut",
+            "EventType": "http://example.org/def/production-trace-patterns/SwitchState",
+            "attribute": "http://example.org/def/automotive/state"
+        },
+        "entity" : {
+            "variable": "ProductionEntity",
+            "identifier": "650bf57c0335464a8cb06a15"
+        }
+    },
+    "3": {
+        "pattern": "3",
+        "description": "Time between processing orders on a machine.",
+        "sparql-template": "elapsed-time_preceding.rq",
+        "sparql-binding": {
+            "EventType": "http://example.org/def/production-trace-patterns/TrackIn",
+            "PrecedingEventType": "http://example.org/def/production-trace-patterns/TrackOut"
+        },
+        "entity" : {
+            "variable": "Resource",
+            "identifier": "bfec9c1f025a40d511319fa0"
+        }
+    },
+    "4.1": {
+        "pattern": "4",
+        "description": "Time a machine is in a state.",
+        "sparql-template": "elapsed-time_succeeding-same.rq",
+        "sparql-binding": {
+            "EventType": "http://example.org/def/production-trace-patterns/SwitchState",
+            "attribute": "http://example.org/def/automotive/state",
+            "ResourceType": "http://example.org/def/production-trace-patterns/Machine"
+        },
+        "entity" : {
+            "variable": "Resource",
+            "identifier": "bfec9c1f025a40d511319fa0"
+        }
+    },
+    "4.2": {
+        "pattern": "4",
+        "description": "Time between observing products at a Work Station.",
+        "sparql-template": "elapsed-time_succeeding-same.rq",
+        "sparql-binding": {
+            "EventType": "http://example.org/def/production-trace-patterns/Observation",
+            "attribute": "http://example.org/def/automotive/mainEntity",
+            "ResourceType": "http://example.org/def/production-trace-patterns/WorkStation"
+        },
+        "entity" : {
+            "variable": "Resource",
+            "identifier": "d4606c090f71b6025eb43e67"
+        }
+    },
+    "5": {
+        "pattern": "5",
+        "description": "Throughput time per product.",
+        "sparql-template": "elapsed-time_maximum.rq",
+        "sparql-binding": {
+            "IntervalStartType": "http://example.org/def/production-trace-patterns/TrackIn",
+            "IntervalEndType": "http://example.org/def/production-trace-patterns/TrackOut",
+            "EntityType": "http://example.org/def/production-trace-patterns/Product"
+        },
+        "entity" : {
+            "variable": "Entity",
+            "identifier": "650bfbae0335464a8cb16f28"
+        }
+    },
+    "6": {
+        "pattern": "6",
+        "description": "Relate AGV event to the product/module that the AGV is transporting.",
+        "sparql-template": "event-entity_preceding.rq",
+        "sparql-binding": {
+            "EventType": "http://example.org/def/production-trace-patterns/SwitchState",
+            "PrecedingEventType": "http://example.org/def/production-trace-patterns/SwitchState",
+            "ResourceType": "http://example.org/def/production-trace-patterns/AGV",
+            "EntityType": "http://example.org/def/production-trace-patterns/ProductionEntity"
+        },
+        "entity" : {
+            "variable": "Resource",
+            "identifier": "86458d3c3942d3853e539a38"
+        }
+    },
+    "7": {
+        "pattern": "7",
+        "description": "Relate machine level track in events to the corresponding work station.",
+        "sparql-template": "event-entity_partOf.rq",
+        "sparql-binding": {
+            "EventType": "http://example.org/def/production-trace-patterns/TrackIn",
+            "EntityType": "http://example.org/def/production-trace-patterns/WorkStation"
+        },
+        "entity" : {
+            "variable": "PartEntity",
+            "identifier": "6239eab0b1bb07fa88ecc5a2"
+        }
+    },
+    "8": {
+        "pattern": "8",
+        "description": "Relate events related to the modules (components) to the product that is composed of those modules.",
+        "sparql-template": "event-entity_all-preceding.rq",
+        "sparql-binding": {
+            "EventType": "http://example.org/def/production-trace-patterns/Aggregate",
+            "RelatedEntityType": "http://example.org/def/production-trace-patterns/Component"
+        },
+        "entity" : {
+            "variable": "ProductionEntity",
+            "identifier": "650bfe710335464a8cb20256"
+        }
+    },
+    "10": {
+        "pattern": "10",
+        "description": "Relate orders to the product they are part of.",
+        "sparql-template": "entity-entity_partOf.rq",
+        "sparql-binding": {
+            "IntervalStartType": "http://example.org/def/production-trace-patterns/TrackIn",
+            "IntervalEndType": "http://example.org/def/production-trace-patterns/TrackOut",
+            "PartEntityType": "http://example.org/def/production-trace-patterns/Order"
+        },
+        "entity" : {
+            "variable": "ProductionEntity",
+            "identifier": "650bfbae0335464a8cb16f28"
+        }
+    }
+}
