@@ -5,7 +5,8 @@ select distinct
   ?intervalEndTime
   ?Resource
   ?ProductionEntity
-  $attribute
+  ?attribute
+  (group_concat(str(?value); separator=", ") as ?groupConcat)
   (sum(?value) as ?sum)
   (avg(?value) as ?avg)
   (max(?value) as ?max)
@@ -14,6 +15,8 @@ where {
   {
     select ?intervalStartTime ?Resource ?ProductionEntity (min(?intervalEndTime_) as ?intervalEndTime)
     where {
+      #%VALUES%#
+
       ?ProductionEntity a ptp:ProductionEntity .
 
       [] a $IntervalStartType ;
@@ -41,4 +44,4 @@ where {
   filter ( ?eventTime >= ?intervalStartTime )
   filter ( ?eventTime <= ?intervalEndTime )
 }
-group by ?Resource ?ProductionEntity ?intervalStartTime ?intervalEndTime $attribute
+group by ?Resource ?ProductionEntity ?intervalStartTime ?intervalEndTime ?attribute

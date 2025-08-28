@@ -4,6 +4,8 @@ construct {
   ?SucceedingEvent ptp:entity ?RelatedProductionEntity .
 }
 where {
+  #%VALUES%#
+
   ?ProductionEntity a ptp:ProductionEntity .
 
   ?Event a $EventType ;

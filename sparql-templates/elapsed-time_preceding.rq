@@ -5,6 +5,10 @@ select distinct
   ?Event
   (min(?eventTime - ?precedingEventTime) as ?elapsedTime)
 where {
+  #%VALUES%#
+
+  ?Resource a ptp:Resource .
+
   ?Event a $EventType ;
     ptp:entity ?Resource ;
     ptp:atTime ?eventTime .
@@ -18,3 +22,4 @@ where {
   filter ( ?eventTime > ?precedingEventTime )
 }
 group by ?Resource ?Event
+order by ?elapsedTime

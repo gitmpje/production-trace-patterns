@@ -4,6 +4,8 @@ construct {
   ?Event ptp:entity ?PartEntity .
 }
 where {
+  #%VALUES%#
+
   ?Entity a $EntityType .
   ?PartEntity ptp:isPartOf ?Entity .
   {

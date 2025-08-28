@@ -4,6 +4,8 @@ select distinct
   ?Entity
   (max(?intervalEndTime - ?intervalStartTime) as ?elapsedTime)
 where {
+  #%VALUES%#
+
   [] a $IntervalStartType ;
     ptp:entity ?Entity ;
     ptp:atTime ?intervalStartTime .
@@ -17,3 +19,4 @@ where {
   filter ( ?intervalStartTime < ?intervalEndTime )
 }
 group by ?Entity
+order by ?elapsedTime

@@ -22,6 +22,8 @@ In the templates the following variables can be used to parametrize the queries:
 * `$PartEntityType`: type of entity used to identify the lower aggregation level entity for deriving part of relation;
 * `$attribute`: attribute that should be reported.
 
+Additionally there is a placeholder for a SPARQL VALUES clause (`#%VALUES%#`) that can be used to scope the query to a specific set of resources.
+
 The list below gives an overview of the query templates and applicable parameters.
 1. *interval_count-event*: `$IntervalStartType`, `$IntervalEndType`, `$EventType`
 2. *interval_aggregate-attribute*: `$IntervalStartType`, `$IntervalEndType`, `$EventType`, `$attribute`

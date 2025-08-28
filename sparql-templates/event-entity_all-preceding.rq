@@ -1,9 +1,11 @@
 prefix ptp: <http://example.org/def/production-trace-patterns/>
 
 construct {
-  ?PrecedingEvent ptp:entity ?RelatedProductionEntity .
+  ?PrecedingEvent ptp:entity ?ProductionEntity .
 }
 where {
+  #%VALUES%#
+
   ?ProductionEntity a ptp:ProductionEntity .
 
   ?Event a $EventType ;

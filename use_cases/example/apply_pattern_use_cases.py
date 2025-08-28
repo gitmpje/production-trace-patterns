@@ -1,6 +1,7 @@
 import os
 
 from rdflib import Graph, Namespace
+from string import Template
 from time import time
 
 DIR_SPARQL = "../../sparql-templates"
@@ -67,7 +68,8 @@ if __name__ == "__main__":
     # Execute the pattern queries for the provided use cases
     for query_file, bindings in pattern_use_cases:
         with open(os.path.join(DIR_SPARQL, query_file)) as f:
-            query = f.read()
+            query_template = Template(f.read())
+        query = query = query_template.substitute(bindings)
 
         start = time()
         r = g.query(query, initBindings=bindings)

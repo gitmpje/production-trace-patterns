@@ -7,6 +7,8 @@ where {
   {
     select ?Event ?Resource (max(?precedingEventTime) as ?precedingEventTime_max)
     where {
+      #%VALUES%#
+
       ?Resource a $ResourceType .
 
       ?Event a $EventType ;
@@ -15,12 +17,9 @@ where {
 
       ?PrecedingEvent a $PrecedingEventType ;
         ptp:entity ?Resource ;
-        ptp:entity ?Entity ;
         ptp:atTime ?precedingEventTime .
 
-      ?Entity a $EntityType .
-
-      filter ( ?precedingEventTime <= ?eventTime )
+      filter ( ?precedingEventTime < ?eventTime )
     }
     group by ?Event ?Resource
   }
@@ -30,4 +29,5 @@ where {
     ptp:entity ?Resource ;
     ptp:entity ?EntityLatest .
   ?EntityLatest a $EntityType .
+  filter not exists { ?Event ptp:entity ?EntityLatest }
 }
